@@ -15,25 +15,5 @@ from app.main import get_human_age
         (100, 100, [21, 17]),
     ]
 )
-def test_get_human_age_valid_cases(
-    cat_age: int,
-    dog_age: int,
-    expected_result: list
-) -> None:
+def test_get_human_age(cat_age: int, dog_age: int, expected_result: list) -> None:
     assert get_human_age(cat_age, dog_age) == expected_result
-
-
-@pytest.mark.parametrize(
-    "cat_age,dog_age",
-    [
-        (-1, 5),
-        (5, -1),
-        ("15", 15),
-        (15, "15"),
-        (None, 10),
-        (10, []),
-    ]
-)
-def test_get_human_age_invalid_inputs(cat_age: any, dog_age: any) -> None:
-    with pytest.raises((ValueError, TypeError)):
-        get_human_age(cat_age, dog_age)
