@@ -20,8 +20,37 @@ from app.main import get_human_age
     ],
 )
 def test_get_human_age(cat_age: int, dog_age: int, expected: list[int]) -> None:
-    """
-    Тестує функцію get_human_age на різних вікових значеннях
-    """
+    """Check human age conversion for given cat and dog ages."""
     result: list[int] = get_human_age(cat_age, dog_age)
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    ("cat_age", "expected"),
+    [
+        (14, 0),
+        (15, 1),
+        (16, 1),
+        (23, 1),
+        (24, 2),
+    ],
+)
+def test_cat_edge_cases(cat_age: int, expected: int) -> None:
+    """Test edge cases for cat ages."""
+    assert get_human_age(cat_age, 0)[0] == expected
+
+
+@pytest.mark.parametrize(
+    ("dog_age", "expected"),
+    [
+        (14, 0),
+        (15, 1),
+        (16, 1),
+        (23, 1),
+        (24, 2),
+        (50, 8),
+    ],
+)
+def test_dog_edge_cases(dog_age: int, expected: int) -> None:
+    """Test edge cases for dog ages."""
+    assert get_human_age(0, dog_age)[1] == expected
