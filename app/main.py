@@ -6,7 +6,7 @@ def get_human_age(cat_age: int, dog_age: int) -> list[int]:
             return 1
 
         human_years: int = 2
-        human_years += (age - 24) // step
+        human_years += (age - 25) // step + 1
         return human_years
 
     cat_human: int = convert(cat_age, 4)
